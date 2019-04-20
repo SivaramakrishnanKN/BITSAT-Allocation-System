@@ -32,7 +32,7 @@
 <h3>Login Form</h3>
 <form action="" method="POST">
 Registration Number: <input type="number" name="user"><br />
-Password: <input type="password" name="pass"><br />
+Password:            <input type="password" name="pass"><br />
 <input type="submit" value="Login" name="submit" />
 </form>
 <?php
