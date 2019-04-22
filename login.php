@@ -36,31 +36,33 @@
    <p><a href="register.php">Register</a> | <a href="login.php">Login</a></p>
 <h3>Login Form</h3>
 <form action="" method="POST">
-Registration Number: <input type="number" name="user"><br />
+Email: <input type="email" name="email"><br />
 Password:            <input type="password" name="pass"><br />
 <input type="submit" value="Login" name="submit" />
 </form>
 <?php
 if(isset($_POST["submit"])){
 
-                if(!empty($_POST['user']) && !empty($_POST['pass'])) {
-                    $user=$_POST['user'];
+                if(!empty($_POST['email']) && !empty($_POST['pass'])) {
+                    $email=$_POST['email'];
                     $pass=$_POST['pass'];
 
                     $con=mysqli_connect('localhost','root','') or die(mysqli_error());
                     mysqli_select_db($con, 'bitsat') or die("cannot select DB");
 
-                    $query=mysqli_query($con,"SELECT * FROM student WHERE regno='".$user."' AND password='".$pass."'");
+                    $query=mysqli_query($con,"SELECT * FROM student WHERE email='".$email."' AND password='".$pass."'");
                     $numrows=mysqli_num_rows($query);
                     if($numrows!=0) {
                         while($row=mysqli_fetch_assoc($query)) {
-                            $dbusername=$row['RegNo'];
+                            $dbemail=$row['Email'];
                             $dbpassword=$row['Password'];
+                            $dbuser=$row['RegNo'];
                         }
 
-                        if($user == $dbusername && $pass == $dbpassword) {
+                        if($email == $dbemail && $pass == $dbpassword) {
                         session_start();
-                        $_SESSION['sess_user']=$user;
+                        $_SESSION['sess_email']=$email;
+                        $_SESSION['sess_user']=$dbuser;
 
                         /* Redirect browser */
                         header("Location: member.php");

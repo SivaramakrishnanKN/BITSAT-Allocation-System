@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION["sess_user"])){
+if(!isset($_SESSION['sess_user'])){
   echo 'fail';
     header("location:login.php");
 } else {
@@ -30,6 +30,7 @@ while ($row=mysqli_fetch_row($result))
       echo "Error updating record: " . $conn->error;
   }
 }
+
 $user = $_SESSION['sess_user'];
 $sql2 = "select CollegeID, BranchID from CollegeBranch";
 $res = $conn->query($sql2);
@@ -48,9 +49,9 @@ while ($row=mysqli_fetch_row($res))
   session_start();
   unset($_SESSION['sess_user']);
   session_destroy();
-  header("location:login.php");
+  header("Location: login.php");
  ?>
- <?php
- }
+<?php
+}
 
- ?>
+?>
