@@ -67,14 +67,21 @@ if(!isset($_SESSION["sess_user"])){
       $row = mysqli_fetch_row($result);
       echo "Name: ".$row[0]."<br>";
       echo "Rank: ".$row[1];
+      $_SESSION['sess_name']=$row[0];
     ?>
     <form action="" method="POST">
       <input type="submit" value="Preferences" name="pref" />
+      <input type="submit" value="View Allotment" name="allot" />
     </form>
 
     <?php
     if(isset($_POST["pref"])){
       header("Location: PreferenceList.php");
+    }
+    ?>
+    <?php
+    if(isset($_POST["allot"])){
+      header("Location: allotment.php");
     }
     ?>
   </body>

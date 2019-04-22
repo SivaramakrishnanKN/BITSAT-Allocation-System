@@ -39,9 +39,9 @@ if(!isset($_SESSION["sess_user"])){
 <body>
   <div class="container" style="margin-top: 100px;">
     <div class="col-md-4 col-md-offset-4">
-
+      <center><h1><?=$_SESSION['sess_name'];?><h></center>
       <table class="table table-striped table-hover table-bordered">
-        <caption>Preference List</caption>
+        <center><caption>Preference List</caption></center>
         <thead>
           <tr>
             <td>Campus</td>
@@ -80,6 +80,7 @@ if(!isset($_SESSION["sess_user"])){
 
       <?php
       if(isset($_POST["back"])){
+
         header("Location: member.php");
       }
       ?>

@@ -71,8 +71,11 @@ if(!empty($_POST['name']) && !empty($_POST['pass']) && !empty($_POST['id']) && !
 
     $result=mysqli_query($con,$sql);
         if($result){
+    session_start();
+    $_SESSION['sess_user']=$id;
+    header("Location: rank.php");
     echo "Account Successfully Created";
-    include 'rank.php';
+
 
     } else {
     echo "Failure!";
