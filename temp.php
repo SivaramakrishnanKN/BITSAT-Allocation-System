@@ -1,3 +1,42 @@
+<?php
+    if(isset($_POST["submit"])){
+        if(!empty($_POST['name']) && !empty($_POST['pass']) && !empty($_POST['id']) && !empty($_POST['email']) && !empty($_POST['dob']) && !empty($_POST['phy']) && !empty($_POST['chem']) && !empty($_POST['math'])) {
+            $name=$_POST['name'];
+            $pass=$_POST['pass'];
+            $id=$_POST['id'];
+            $email=$_POST['email'];
+            $dob=$_POST['dob'];
+            $phy=$_POST['phy'];
+            $chem=$_POST['chem'];
+            $math=$_POST['math'];
+            $total = $math+$phy+$chem;
+            $con=mysqli_connect('localhost','root','') or die(mysqli_error());
+            mysqli_select_db($con, 'bitsat') or die("cannot select DB");
+
+            $query=mysqli_query($con,"SELECT * FROM Student WHERE regno='".$id."'");
+            $numrows=mysqli_num_rows($query);
+            if($numrows==0) {
+                $sql="INSERT INTO student(RegNo, Name, Email, Password, DOB, MarksPhy, MarksChem, MarksMath, Total) VALUES ('$id','$name', '$email', '$pass', '$dob', '$phy', '$chem', '$math', '$total')";
+
+                $result=mysqli_query($con,$sql);
+                if($result){
+                    echo "Account Successfully Created";
+                    include 'rank.php';
+
+                } else {
+                    echo "Failure!";
+                    echo $result;
+                }
+
+            } else {
+                echo "That Registration number already exists! Please try again with another.";
+            }
+
+        } else {
+            echo "All fields are required!";
+        }
+    }
+?>
 
 <!DOCTYPE html>
 
@@ -115,45 +154,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-        <?php
-            if(isset($_POST["submit"])){
-                if(!empty($_POST['name']) && !empty($_POST['pass']) && !empty($_POST['id']) && !empty($_POST['email']) && !empty($_POST['dob']) && !empty($_POST['phy']) && !empty($_POST['chem']) && !empty($_POST['math'])) {
-                    $name=$_POST['name'];
-                    $pass=$_POST['pass'];
-                    $id=$_POST['id'];
-                    $email=$_POST['email'];
-                    $dob=$_POST['dob'];
-                    $phy=$_POST['phy'];
-                    $chem=$_POST['chem'];
-                    $math=$_POST['math'];
-                    $total = $math+$phy+$chem;
-                    $con=mysqli_connect('localhost','root','') or die(mysqli_error());
-                    mysqli_select_db($con, 'bitsat') or die("cannot select DB");
-
-                    $query=mysqli_query($con,"SELECT * FROM Student WHERE regno='".$id."'");
-                    $numrows=mysqli_num_rows($query);
-                    if($numrows==0) {
-                        $sql="INSERT INTO student(RegNo, Name, Email, Password, DOB, MarksPhy, MarksChem, MarksMath, Total) VALUES ('$id','$name', '$email', '$pass', '$dob', '$phy', '$chem', '$math', '$total')";
-
-                        $result=mysqli_query($con,$sql);
-                        if($result){
-                            echo "Account Successfully Created";
-                            include 'rank.php';
-
-                        } else {
-                            echo "Failure!";
-                            echo $result;
-                        }
-
-                    } else {
-                        echo "That Registration number already exists! Please try again with another.";
-                    }
-
-                } else {
-                    echo "All fields are required!";
-                }
-            }
-        ?>
 
     </body>
 
