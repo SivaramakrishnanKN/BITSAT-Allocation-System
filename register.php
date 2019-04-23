@@ -63,7 +63,7 @@ if(!empty($_POST['name']) && !empty($_POST['pass']) && !empty($_POST['id']) && !
     $con=mysqli_connect('localhost','root','') or die(mysqli_error());
     mysqli_select_db($con, 'bitsat') or die("cannot select DB");
 
-    $query=mysqli_query($con,"SELECT * FROM Student WHERE regno='".$id."'");
+    $query=mysqli_query($con,"SELECT * FROM Student WHERE regno='".$id."' or Email='".$email."'");
     $numrows=mysqli_num_rows($query);
     if($numrows==0)
     {
