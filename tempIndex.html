@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <title>BITSAT Allocation Portal</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <style>
+
+            .jumbotron {
+                background-image: url(BITSJumbo2.jpg);
+                text-align: center;
+                text-decoration-color: white;
+                padding-top: 100px;
+                padding-bottom: 200px;
+                background-size: cover;
+            }
+
+            form {
+                position: relative;
+                text-align: left;
+            }
+
+            #register {
+                margin-top: 20px;
+            }
+
+        </style>
+
+    </head>
+
+    <body data-spy="scroll" data-target="#navbar" data-offset="150">
+
+        <nav class="navbar navbar-light bg-faded navbar-fixed-top" id="navbar">
+            <a class="navbar-brand" href="">BITSAT Allocation Portal</a>
+            <!--<ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#jumbotron">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="PreferenceList.php">My Preferences</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.php">About</a>
+                </li>
+            </ul>-->
+
+            <!--DON'T DELETE THESE COMMENTS PLEASE-->
+
+
+            <form class="form-inline pull-xs-right">
+                <small>Already registered?</small>
+                <a href="Register.php" class="btn btn-success" type="submit">Login</a>
+            </form>
+        </nav>
+
+        <div class="jumbotron" id="jumbotron">
+            <h1 class="display-3">BITSAT Preferences Allocation Portal</h1>
+            <p class="lead">Welcome Back! Enter your </p>
+            <hr class="m-y-2">
+            <!--<p>Some additional text here</p>-->
+            <div class="container">
+
+                <div class="row">
+                    <fieldset>
+                        <form method="post">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Name</label>
+                                    <input type="text" class="form-control" name="name" placeholder="Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Registration Number</label>
+                                    <input type="number" class="form-control" name="id" id="inputPassword4" placeholder="Registraion Number">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Email</label>
+                                    <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="date-input" class="col-2 col-form-label">Date of Birth</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="date" name="dob" value="2000-01-01" id="example-date-input">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <!--<label for="inputPassword">Password</label>-->
+                                    <input type="password" class="form-control" name="pass" id="inputPassword" placeholder="Password">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <!--<label for="inputPassword">Reenter Password</label>-->
+                                    <input type="password" class="form-control" name="confirmpass" id="inputPassword" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-sm-4">
+                                    <!--<label for="marks">Physics</label>-->
+                                    <input type="number" class="form-control"  name="phy" placeholder="Marks scored in Physics">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <!--<label for="marks">Chemistry</label>-->
+                                    <input type="number" class="form-control" name="chem" placeholder="Marks scored in Chemistry">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <!--<label for="marks">Math</label>-->
+                                    <input type="number" class="form-control" name="math" placeholder="Marks scored in Math">
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary btn-lg pull-xs-right" id="register">Register</button>
+                        </form>
+                    </fieldset>
+                </div>
+
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
