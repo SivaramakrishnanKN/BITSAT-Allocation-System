@@ -58,30 +58,24 @@ if(!isset($_SESSION)){
               $re=mysqli_query($conn,$sql1);
                   if($re){
                     $re1=mysqli_query($conn,$sql2);
-                    echo ".$r[3] .$r[4]          ";
-                      if($re1){
-                        if($r[4]==$r[3]-1)
-                        {
-                          echo "Rank:.$r[6]";
-                          $sql5 = "UPDATE CollegeBranch SET curcutoff=$r[6] WHERE BranchID='$r[2]' and CollegeID='$r[1]'";
-                          $r1=mysqli_query($conn,$sql5);
-                        }
-
-
+                    if($re1){
+                      if($r[4]==$r[3]-1)
+                      {
+                        $sql5 = "UPDATE CollegeBranch SET curcutoff=$r[6] WHERE BranchID='$r[2]' and CollegeID='$r[1]'";
+                        $r1=mysqli_query($conn,$sql5);
+                      }
                     }
-                     else {
+                  else {
                     echo "Failure!";
                     echo $re1;
-                    }
-                    break;
-              }
+                  }
+                  break;
+                  }
                else {
               echo "Failure!";
               echo $re;
               }
             }
-
-
         }
       }
 

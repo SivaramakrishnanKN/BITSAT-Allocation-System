@@ -31,6 +31,7 @@ $sql1 = "DELETE FROM Student WHERE RegNo=$user";
 mysqli_query($conn, $sql1);
 
 echo 'Deleted';
+header("Location: rank.php");
 
 
 if(isset($_POST["back"])){
