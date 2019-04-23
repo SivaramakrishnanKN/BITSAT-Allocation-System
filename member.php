@@ -72,6 +72,7 @@ if(!isset($_SESSION["sess_user"])){
     <form action="" method="POST">
       <input type="submit" value="Preferences" name="pref" />
       <input type="submit" value="View Allotment" name="allot" />
+      <input type="submit" value="Withdraw" name="withdraw"/>
     </form>
 
     <?php
@@ -82,6 +83,13 @@ if(!isset($_SESSION["sess_user"])){
     <?php
     if(isset($_POST["allot"])){
       header("Location: allotment.php");
+    }
+    ?>
+    <?php
+    if(isset($_POST["withdraw"])){
+      session_start();
+      $_SESSION['with_user'] = $user;
+      header("Location: Withdraw.php");
     }
     ?>
   </body>

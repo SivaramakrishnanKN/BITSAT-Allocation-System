@@ -46,7 +46,7 @@ if(!isset($_SESSION)){
       {
 
         $reg = $row[0];
-        $q = "SELECT RegNo,StudentPreference.CollegeID, StudentPreference.BranchID, TotalSeats, OccupiedSeats, PreferenceNo FROM StudentPreference, CollegeBranch where StudentPreference.CollegeID=CollegeBranch.CollegeID and StudentPreference.BranchID=CollegeBranch.BranchID and RegNo=$reg order by PreferenceNo";
+        $q = "SELECT StudentPreference.RegNo,StudentPreference.CollegeID, StudentPreference.BranchID, TotalSeats, OccupiedSeats, PreferenceNo, Total FROM StudentPreference, CollegeBranch,Student where StudentPreference.CollegeID=CollegeBranch.CollegeID and StudentPreference.BranchID=CollegeBranch.BranchID and Student.RegNo=$reg and StudentPreference.RegNo=$reg order by PreferenceNo";
         $res=$conn->query($q);
         while($r=mysqli_fetch_row($res))
         {
@@ -58,7 +58,16 @@ if(!isset($_SESSION)){
               $re=mysqli_query($conn,$sql1);
                   if($re){
                     $re1=mysqli_query($conn,$sql2);
+                    echo ".$r[3] .$r[4]          ";
                       if($re1){
+                        if($r[4]==$r[3]-1)
+                        {
+                          echo "Rank:.$r[6]";
+                          $sql5 = "UPDATE CollegeBranch SET curcutoff=$r[6] WHERE BranchID='$r[2]' and CollegeID='$r[1]'";
+                          $r1=mysqli_query($conn,$sql5);
+                        }
+
+
                     }
                      else {
                     echo "Failure!";
@@ -71,6 +80,8 @@ if(!isset($_SESSION)){
               echo $re;
               }
             }
+
+
         }
       }
 
