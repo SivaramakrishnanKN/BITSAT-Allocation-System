@@ -913,7 +913,7 @@ h1, h2, h3, h4, h5,
     margin-bottom: 1.5rem; }
 
 .service {
-  padding: 4rem;
+  padding: 4rem;cta
   background: #fff; }
   @media (max-width: 991.98px) {
     .service {
@@ -977,7 +977,7 @@ h1, h2, h3, h4, h5,
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: #fff;
-    font-size: .8rem; }
+    font-size: .8rem; }cta
 
 .custom-icon-wrap h3 {
   font-size: 1.05rem;
@@ -1074,7 +1074,7 @@ h1, h2, h3, h4, h5,
   .teacher h3 {
     font-size: 1.2rem; }
   .teacher .position {
-    color: #adb5bd; }
+    color: #404040; }
 
 .course-instructor {
   padding: 30px; }
