@@ -89,8 +89,31 @@ if(!isset($_SESSION['sess_campus'])){
             $result=mysqli_query($con,$sq);
             if($result) {
               echo "Branch Added";
-              header("Location: rank.php");
-              header("Location: admin.php");
+              $trigger = "CREATE OR REPLACE DEFINER=`root`@`localhost` TRIGGER update_pref
+              AFTER INSERT ON CollegeBranch FOR EACH ROW
+              BEGIN
+
+                 DECLARE num NUMBER;
+                 reg NUMBER;
+                 SELECT Count(*) INTO num FROM CollegeBranch;
+                 SELECT regno INTO reg from student;
+                 INSERT INTO VALUES('regno','$_SESSION['sess_campus']','$_SESSION['sess_branch']','num');
+                 INSERT INTO StudentPreference
+                   ( RegNo,
+                     CollegeID,
+                     BranchID,
+                     PreferenceNo)
+                   VALUES
+                   ( reg,
+                    $_SESSION['sess_campus'],
+                    $_SESSION['sess_branch'],
+                    num);
+              END;
+              ";
+              $result=$con->query($trigger);
+              echo $result;
+
+              //header("Location: admin.php");
             }
             else {
               echo "Failure";
