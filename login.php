@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
@@ -50,8 +51,11 @@ if(isset($_POST["submit"])){
                     mysqli_select_db($con, 'bitsat') or die("cannot select DB");
 
                     $query=mysqli_query($con,"SELECT * FROM student WHERE email='".$email."' AND password='".$pass."'");
+                    $query2=mysqli_query($con,"SELECT * FROM admin WHERE email='".$email."' AND password='".$pass."'");
                     $numrows=mysqli_num_rows($query);
+                    $numrows2=mysqli_num_rows($query2);
                     if($numrows!=0) {
+                      echo "In student loop";
                         while($row=mysqli_fetch_assoc($query)) {
                             $dbemail=$row['Email'];
                             $dbpassword=$row['Password'];
@@ -64,7 +68,23 @@ if(isset($_POST["submit"])){
                         $_SESSION['sess_user']=$dbuser;
 
                         /* Redirect browser */
-                        header("Location: member.php");
+                        header("Location: student.php");
+                        }
+                    } else if($numrows2 != 0) {
+                      echo "In admin loop";
+                        while($row=mysqli_fetch_assoc($query2)) {
+                            $dbemail=$row['Email'];
+                            $dbpassword=$row['Password'];
+                            $dbuser=$row['Name'];
+                        }
+
+                        if($email == $dbemail && $pass == $dbpassword) {
+                        session_start();
+                        $_SESSION['sess_email']=$email;
+                        $_SESSION['sess_user']=$dbuser;
+
+                        /* Redirect browser */
+                        header("Location: admin.php");
                         }
                     } else {
                         echo "Invalid username or password!";

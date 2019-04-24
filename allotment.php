@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION)){
   echo 'fail';
-    header("location:member.php");
+    header("location:student.php");
 } else {
 ?>
 <!doctype html>
@@ -98,7 +98,7 @@ if(!isset($_SESSION)){
       <?php
       if(isset($_POST["back"])){
 
-        header("Location: member.php");
+        header("Location: student.php");
       }
       ?>
     </div>
