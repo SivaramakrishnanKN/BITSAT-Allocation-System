@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION['with_user'])){
   echo 'fail';
-    header("location:member.php");
+    header("location:student.php");
 } else {
 ?>
 <form action="" method="POST">
