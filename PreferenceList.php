@@ -6,7 +6,7 @@ if(!isset($_SESSION["sess_user"])){
 ?>
 
 <?php
-	$conn = new mysqli("localhost", "root", "", "bitsat");
+	$conn = new mysqli("localhost", "root", "root", "bitsat");
 
     if (isset($_POST['update'])) {
         foreach($_POST['positions'] as $position) {
@@ -53,7 +53,7 @@ if(!isset($_SESSION["sess_user"])){
           <?php
           $dbhost = "localhost";
           $username = "root";
-          $password = "";
+          $password = "root";
           $db = "bitsat";
           $con = mysqli_connect($dbhost, $username, $password, $db);
           // Check connection

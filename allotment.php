@@ -28,7 +28,7 @@ if(!isset($_SESSION)){
       <?php
       $servername = "localhost";
       $username = "root";
-      $password = "";
+      $password = "root";
       $dbname = "bitsat";
 
       // Create connection

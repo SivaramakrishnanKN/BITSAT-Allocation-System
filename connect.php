@@ -1,7 +1,7 @@
 <?php
   $dbhost = "localhost";
   $username = "root";
-  $password = "";
+  $password = "root";
   $db = "bitsat";
   $con = mysqli_connect($dbhost, $username, $password, $db);
   // Check connection
