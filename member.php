@@ -61,17 +61,19 @@ if(!isset($_SESSION["sess_user"])){
           die("Connection failed: " . $conn->connect_error);
       }
       $user = $_SESSION['sess_user'];
-      $sql = "select Name, Rank from Student WHERE RegNo = $user";
+      $sql = "select Name, Rank, Total from Student WHERE RegNo = $user";
 
       $result = $conn->query($sql);
       $row = mysqli_fetch_row($result);
       echo "Name: ".$row[0]."<br>";
-      echo "Rank: ".$row[1];
+      echo "Rank: ".$row[1]."<br>";
+      echo "Total: ".$row[2];
       $_SESSION['sess_name']=$row[0];
     ?>
     <form action="" method="POST">
       <input type="submit" value="Preferences" name="pref" />
       <input type="submit" value="View Allotment" name="allot" />
+      <input type="submit" value="Withdraw" name="withdraw"/>
     </form>
 
     <?php
@@ -82,6 +84,13 @@ if(!isset($_SESSION["sess_user"])){
     <?php
     if(isset($_POST["allot"])){
       header("Location: allotment.php");
+    }
+    ?>
+    <?php
+    if(isset($_POST["withdraw"])){
+      session_start();
+      $_SESSION['with_user'] = $user;
+      header("Location: Withdraw.php");
     }
     ?>
   </body>

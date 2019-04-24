@@ -47,6 +47,7 @@ if(!isset($_SESSION["sess_user"])){
             <td>Campus</td>
             <td>Branch</td>
             <td>Cut Off</td>
+            <td> Current Cutoff</td>
           </tr>
         </thead>
         <tbody>
@@ -61,13 +62,14 @@ if(!isset($_SESSION["sess_user"])){
               die("Connection failed: " . mysqli_connect_error());
           }
           $user = $_SESSION['sess_user'];
-          $sql = $con->query("SELECT Campus, BranchName, TotalSeats, Cutoff, Branch.BranchID as Bid, College.CollegeID as Cid, StudentPreference.PreferenceNo as Pno from College, Branch, CollegeBranch, StudentPreference where CollegeBranch.CollegeID=College.CollegeID and CollegeBranch.BranchID=Branch.BranchID and StudentPreference.CollegeID=College.CollegeID and StudentPreference.BranchID=Branch.BranchID and StudentPreference.RegNo=$user order by PreferenceNo");
+          $sql = $con->query("SELECT Campus, BranchName, TotalSeats, Cutoff, Curcutoff, Branch.BranchID as Bid, College.CollegeID as Cid, StudentPreference.PreferenceNo as Pno from College, Branch, CollegeBranch, StudentPreference where CollegeBranch.CollegeID=College.CollegeID and CollegeBranch.BranchID=Branch.BranchID and StudentPreference.CollegeID=College.CollegeID and StudentPreference.BranchID=Branch.BranchID and StudentPreference.RegNo=$user order by PreferenceNo");
           while($data = $sql->fetch_array()) {
             echo '
               <tr data-position="'.$data['Pno'].'"  data-branch="'.$data['Bid'].'" data-college="'.$data['Cid'].'">
                 <td>'.$data['Campus']. '</td>
                 <td>'.$data['BranchName']. '</td>
                 <td>'.$data['Cutoff']. '</td>
+                <td>'.$data['Curcutoff'].'</td>
               </tr>
             ';
           }
