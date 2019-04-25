@@ -32,7 +32,7 @@ if(!isset($_SESSION['sess_branch'])){
               header("Location: Institute.php");
             }
             else {
-              echo "Failure";
+              header("Location: Institute.php");
             }
           }
       ?>

@@ -29,13 +29,13 @@ while ($row=mysqli_fetch_row($res))
 {
   $sql = "INSERT INTO StudentPreference(RegNo, CollegeID, BranchID, PreferenceNo) VALUES('$row[0]', '$cid', '$bid', '$num[0]')";
 
-  if ($conn->query($sql) === TRUE) {
+  if ($conn->query($sql)) {
     header("Location: Institute.php");
-
   } else {
       echo "Error updating record: " . $conn->error;
   }
 }
+header("Location: Institute.php");
  ?>
 <?php
 }
