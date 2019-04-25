@@ -27,7 +27,7 @@ $num = mysqli_fetch_row($res1);
 
 while ($row=mysqli_fetch_row($res))
 {
-  $sql = "INSERT INTO StudentPreference(RegNo, CollegeID, BranchID, PreferenceNo) VALUES('$row[0]', '$cid', '$bid', '$num[0]')";
+  $sql = "DELETE FROM StudentPreference WHERE BranchID = $bid and CollegeID = $cid";
 
   if ($conn->query($sql) === TRUE) {
     header("Location: Institute.php");

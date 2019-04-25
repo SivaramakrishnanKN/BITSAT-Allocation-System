@@ -8,7 +8,7 @@ if(!isset($_SESSION['sess_user'])){
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "bitsat";
 
 // Create connection
@@ -18,12 +18,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 $num = 0;
-$sql1 = "select RegNo from Student order by Total desc, MarksPhy desc, MarksMath desc, MarksChem desc";
+$sql1 = "select RegNo from Student order by Total desc, MarksPhy desc, MarksMath desc, MarksChem desc, RegNo asc";
 $result = $conn->query($sql1);
 while ($row=mysqli_fetch_row($result))
 {
   $num = $num+1;
   $sql = "UPDATE Student SET Rank=$num WHERE RegNo = $row[0]";
+  $s = "UPDATE rankallotment SET Rank=$num WHERE RegNo = $row[0]";
+  $re = $conn->query($s);
+  $sq = "INSERT INTO allotment(Rank) VALUES('$num')";
+  $r = $conn->query($sq);
   if ($conn->query($sql) === TRUE) {
 
   } else {
@@ -39,7 +43,6 @@ while ($row=mysqli_fetch_row($res))
 {
   $num = $num+1;
   $sql = "INSERT INTO StudentPreference(RegNo, CollegeID, BranchID, PreferenceNo) VALUES('$user', '$row[0]', '$row[1]', '$num')";
-
   if ($conn->query($sql) === TRUE) {
 
   } else {

@@ -28,7 +28,7 @@ if(!isset($_SESSION)){
       <?php
       $servername = "localhost";
       $username = "root";
-      $password = "root";
+      $password = "";
       $dbname = "bitsat";
 
       // Create connection
@@ -81,13 +81,22 @@ if(!isset($_SESSION)){
 
       $user = $_SESSION['sess_user'];
 
-      $pr = "SELECT Campus, BranchName FROM Student, College, Branch WHERE RegNo=$user and InstiID=CollegeID and Student.BranchID=Branch.BranchID";
-      $res = $conn->query($pr);
+      $pr = "SELECT Campus, BranchName, Rank, CollegeBranch.CollegeID, CollegeBranch.BranchID FROM Student, College, CollegeBranch WHERE RegNo=$user and InstiID=College.CollegeID and Student.BranchID=CollegeBranch.BranchID";
+      $res = mysqli_query($conn,$pr);
       $rr = mysqli_fetch_row($res);
-      echo "Allotment: ";
-      echo $rr[0];
-      echo " ";
-      echo $rr[1];
+      echo "You have been Alloted: ";
+      if($rr) {
+        $prp = "UPDATE Allotment SET CollegeID='$rr[3]', BranchID='$rr[4]' WHERE Allotment.Rank=$rr[2]";
+        $rt = mysqli_query($conn,$prp);
+        echo "BITS Pilani, ";
+        echo $rr[0];
+        echo " Campus";
+        echo " ";
+        echo $rr[1];
+      }
+      else {
+        echo 'Waiting List';
+      }
 
 
       ?>

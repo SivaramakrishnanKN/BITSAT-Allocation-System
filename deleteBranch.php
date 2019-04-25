@@ -12,7 +12,7 @@ if(!isset($_SESSION['sess_branch'])){
           $con=mysqli_connect('localhost','root','') or die(mysqli_error());
           mysqli_select_db($con, 'bitsat') or die("cannot select DB");
 
-          $sql=mysqli_query($con,"SELECT * FROM collegebranch WHERE branchid='".$id."' AND collegeid='".$cid."'");
+          $sql=mysqli_query($con,"SELECT * FROM CollegeBranch WHERE BranchId='".$id."' AND CollegeId='".$cid."'");
           $numrows=mysqli_num_rows($sql);
           $row=mysqli_fetch_assoc($sql);
           if($numrows != 0)
@@ -21,10 +21,10 @@ if(!isset($_SESSION['sess_branch'])){
             $b= $row['BranchID'];
             echo $c;
             echo $b;
-            $s = "DELETE FROM studentpreference WHERE branchid='".$b."' AND collegeid='".$c."'";
+            $s = "DELETE FROM StudentPreference WHERE BranchId='".$b."' AND CollegeId='".$c."'";
             $res=mysqli_query($con,$s);
             echo $res;
-            $sq="DELETE FROM collegebranch WHERE branchid='".$b."' AND collegeid='".$c."'";
+            $sq="DELETE FROM CollegeBranch WHERE BranchId='".$b."' AND CollegeId='".$c."' ";
             $ret=mysqli_query($con,$sq);
             echo $ret;
             if($ret) {
