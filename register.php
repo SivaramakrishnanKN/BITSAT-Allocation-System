@@ -1,3 +1,50 @@
+<?php
+if(isset($_POST["submit"])){
+if(!empty($_POST['name']) && !empty($_POST['pass']) && !empty($_POST['id']) && !empty($_POST['email']) && !empty($_POST['dob']) && !empty($_POST['phy']) && !empty($_POST['chem'])&& !empty($_POST['math'])) {
+  if($_POST['phy']>150||$_POST['phy']<0||$_POST['math']>150||$_POST['math']<0||$_POST['chem']>150||$_POST['chem']<0) 
+{
+echo "Invalid marks";
+}else{
+   $name=$_POST['name'];
+    $pass=$_POST['pass'];
+    $id=$_POST['id'];
+    $email=$_POST['email'];
+    $dob=$_POST['dob'];
+    $phy=$_POST['phy'];
+    $chem=$_POST['chem'];
+    $math=$_POST['math'];
+    $total = $math+$phy+$chem;
+    $con=mysqli_connect('localhost','root','') or die(mysqli_error());
+    mysqli_select_db($con,'bitsat') or die("cannot select DB");
+
+    $query=mysqli_query($con,"SELECT * FROM Student WHERE regno='".$id."' or email='".$email."'");
+    $numrows=mysqli_num_rows($query);
+    if($numrows==0)
+    {
+    $sql="INSERT INTO student(RegNo, Name, Email, Password, DOB, MarksPhy, MarksChem, MarksMath, Total) VALUES ('$id','$name','$email', '$pass', '$dob', '$phy', '$chem', '$math', '$total')";
+    $result=mysqli_query($con,$sql);
+    if($result){
+    session_start();
+    $_SESSION['sess_user']=$id;
+    header("Location: rank.php");
+    echo "Account Successfully Created";
+    
+    //header("Location: login.html");
+    } 
+    else 
+    {
+    echo "Failure!";
+    echo $result;
+    }
+    } else {
+    echo "Registration number/Email ID already exists";
+    }
+}
+}else{
+    echo "All fields are required!";
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,7 +108,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
                   <small style="color:white;">Already registered?</small>
-                <li class="cta"><a href="login.html" class="nav-link"><span>Login</span></a></li>
+                <li class="cta"><a href="login.php" class="nav-link"><span>Login</span></a></li>
               </ul>
             </nav>
             <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
@@ -99,9 +146,9 @@
                     <div class="form-group">
                       <input type="password" class="form-control" placeholder="Password" name="pass">
                     </div>
-                    <div class="form-group mb-4">
+                    <!--<div class="form-group mb-4">
                       <input type="password" class="form-control" placeholder="Re-type Password" name="pass2">
-                    </div>
+                    </div>-->
                     <div class="form-group">
                       <input class="form-control" type="date" value="2000-01-01" name="dob">
                     </div>
@@ -148,51 +195,7 @@
   <script src="js/jquery.sticky.js"></script>
 
 
-  <script src="js/main.js"></script>
+<script src="js/main.js"></script>
 
-  </body>
+</body>
 </html>
-
-<?php
-if(isset($_POST["submit"])){
-if(!empty($_POST['name']) && !empty($_POST['pass']) && !empty($_POST['id']) && !empty($_POST['email']) && !empty($_POST['dob']) && !empty($_POST['phy']) && !empty($_POST['chem'])&& !empty($_POST['math'])) {
-    $name=$_POST['name'];
-    $pass=$_POST['pass'];
-    $id=$_POST['id'];
-    $email=$_POST['email'];
-    $dob=$_POST['dob'];
-    $phy=$_POST['phy'];
-    $chem=$_POST['chem'];
-    $math=$_POST['math'];
-    $total = $math+$phy+$chem;
-    $con=mysqli_connect('localhost','root','') or die(mysqli_error());
-    mysqli_select_db($con, 'bitsat') or die("cannot select DB");
-
-    $query=mysqli_query($con,"SELECT * FROM Student WHERE regno='".$id."' or email='".$email."'");
-    $numrows=mysqli_num_rows($query);
-    if($numrows==0)
-    {
-    $sql="INSERT INTO student(RegNo, Name, Email, Password, DOB, MarksPhy, MarksChem, MarksMath, Total) VALUES ('$id','$name', '$email', '$pass', '$dob', '$phy', '$chem', '$math', '$total')";
-
-    $result=mysqli_query($con,$sql);
-        if($result){
-    session_start();
-    $_SESSION['sess_user']=$id;
-    header("Location: rank.php");
-    echo "Account Successfully Created";
-
-
-    } else {
-    echo "Failure!";
-    echo $result;
-    }
-
-    } else {
-    echo "That Registration number already exists! Please try again with another.";
-    }
-
-} else {
-    echo "All fields are required!";
-}
-}
-?>
