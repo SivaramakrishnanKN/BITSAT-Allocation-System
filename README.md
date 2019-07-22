@@ -1,7 +1,2 @@
-# BDSM-OG
-RNKJS
+# Hotel Management System using PHP, MySQL, Bootstrap
 
-
-Useful:
-
-https://mdbootstrap.com/plugins/jquery/sortable/
